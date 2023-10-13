@@ -1,0 +1,67 @@
+<html>
+<head>
+</head>
+<body>
+<textarea id="MachineFault_List" style="width:30%;height:30%"></textarea>
+<br>
+<input type="button" value="執行" style="margin-top:20px" onclick="run()">
+<input type="button" value="重新整理" style="margin-top:20px" onclick="location.reload()">
+<hr>
+<textarea id="Result" style="width:30%;height:30%"></textarea>
+
+</body>
+<script>
+
+function consolidateFaults(timeAndFaultList) {
+  const faultTypeMap = new Map();
+
+  for (const entry of timeAndFaultList) {
+    // Remove colons from the time range
+    const cleanedEntry = entry.replace(/:/g, '');
+
+    const [timeRange, faultType] = cleanedEntry.split(' ');
+    const [startTime, endTime] = timeRange.split('-').map(time => parseInt(time, 10));
+
+    const timeInterval = endTime - startTime;
+
+    if (faultType in faultTypeMap) {
+      faultTypeMap[faultType] += timeInterval;
+    } else {
+      faultTypeMap[faultType] = timeInterval;
+    }
+  }
+
+  const faultTypeList = Object.keys(faultTypeMap);
+  const consolidatedFaultInfo = faultTypeList.map(faultType => {
+  const time = faultTypeMap[faultType];
+  const hours = Math.floor(time / 60);
+  const minutes = time % 60;
+  const formattedMinutes = (minutes < 10) ? `0${minutes}` : minutes;
+  return `${faultType} ${hours}.${formattedMinutes}H`;
+});
+
+  return consolidatedFaultInfo;
+}
+
+function run() {
+
+  const textareaContent = document.getElementById("MachineFault_List").value;
+  const modifiedContent = textareaContent.replace(/(\d{2})(\d{2}-\d{2})(\d{2})/g, "$1:$2$3");
+  const lines = modifiedContent.split('\n').filter(line => line.trim() !== "");
+  const timeAndFaultList= lines;
+
+  
+ /*console.log(timeAndFaultList);*/
+ const consolidatedFaultInfo = consolidateFaults(timeAndFaultList);
+
+ /*consolidatedFaultInfo.forEach(info => console.log(info));*/
+const Result = consolidatedFaultInfo.slice();
+
+const resultTextarea = document.getElementById("Result");
+resultTextarea.value = Result.join('\n');
+}
+
+</script>
+</html>
+
+
