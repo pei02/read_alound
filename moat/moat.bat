@@ -8,18 +8,18 @@ set "COLOR_GREEN=%ESC_CHAR%32m"
 set "COLOR_BLUE=%ESC_CHAR%96m"
 set "COLOR_RESET=%ESC_CHAR%0m"
 
-set arr=219 659 333 128 555 789 456 1208
+set moat_arr=219 659 333 128 555 789 456 1208
 
 :input_loop
 set /p search_num="請輸入腳數 (輸入 ALL 列出全部內容): "
 
 if /i "%search_num%"=="ALL" (
-    echo %COLOR_BLUE%需要護城河的腳數: !arr!%COLOR_RESET%
+    echo %COLOR_BLUE%需要護城河的腳數: !moat_arr!%COLOR_RESET%
     goto :input_loop
 )
 
 set "found=false"
-for %%i in (%arr%) do (
+for %%i in (!moat_arr!) do (
     if %%i equ !search_num! (
         set "found=true"
         goto :found
