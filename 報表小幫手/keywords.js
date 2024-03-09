@@ -1,0 +1,35 @@
+
+
+var keywordMap = {
+    "真空": "收料機機故",
+    "真空不良": "收料機機故",
+    "收料機": "收料機機故",
+    "ul": "收料機機故",
+    "U/L": "收料機機故",
+    "Unloader": "收料機機故",
+    "cim": "輸送不良",
+    "CIM": "輸送不良",
+    "輸送不良": "輸送不良",
+    "卡流道": "輸送不良",
+    "卡貨": "輸送不良",
+    "SPI": "SPI機故",
+    "spi": "SPI機故",
+    "SPI每條Alarm": "SPI機故",
+    "SPI每條叫": "SPI機故",
+    "AOI": "AOI機故",
+    "aoi異物待ME確認": "AOI機故",
+    "AOI一直叫": "AOI機故",
+    "AOI每條Alarm": "AOI機故",
+    "印刷不良": "Minami機故",
+    "印刷缺錫": "Minami機故",
+    "MINAMI": "Minami機故",
+    "minami": "Minami機故",
+    "NXT": "NXT機故",
+    "NXT真空不良": "NXT機故",
+    "nxt真空": "NXT機故",
+    "NXT真空": "NXT機故",
+    "nxt": "NXT機故",
+    "缺件": "NXT機故",
+};
+
+
