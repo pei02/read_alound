@@ -1,0 +1,30 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+    Dim cell As Range
+    
+    ' 監控 B2 到 B23 的變化
+    If Not Intersect(Target, Me.Range("B2:B15")) Is Nothing Then
+        For Each cell In Intersect(Target, Me.Range("B2:B15"))
+            If cell.Value = "不參加" Then
+                HideCheckbox cell.Row ' 傳遞行號給 HideCheckbox
+            Else
+                ShowCheckbox cell.Row ' 傳遞行號給 ShowCheckbox
+            End If
+        Next cell
+    End If
+End Sub
+
+Sub HideCheckbox(rowNum As Long)
+    ActiveSheet.Shapes("Group 1_" & rowNum).Visible = False
+End Sub
+
+Sub ShowCheckbox(rowNum As Long)
+    ActiveSheet.Shapes("Group 1_" & rowNum).Visible = True
+End Sub
+
+Private Sub Workbook_Open()
+
+End Sub
+
+
+
+=IF(B2=H3,D_Option,$J$2:$J$3)
